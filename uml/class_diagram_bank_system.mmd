@@ -1,0 +1,31 @@
+classDiagram
+    class Client{
+        id: UUID
+        name: String
+        cpf: String
+        email: String
+    }
+
+    class Account{
+        id: UUID
+        accountNumber: String
+        accountAgency: String
+        client: Client
+        balance: Double
+        bound: Double
+        accountType: String
+        transactions: List<Transaction>
+    }
+
+    class Transaction{
+        id: UUID
+        date: Date
+        transactionType: String
+        value: Double
+        sourceAccount: Account
+        destinationAccount: Account
+    }
+    
+    Client *-- "0..*" Account
+    Account  *-- "0..*" Transaction
+    Transaction -- "1..2" Account

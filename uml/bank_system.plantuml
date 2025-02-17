@@ -1,0 +1,50 @@
+@startuml BankSystem
+    class Client {
+        -Integer id
+        -String name
+        -String cpf
+        -String email
+
+        +Integer getId()
+        +String getName()
+        +String getCpf()
+        +String getEmail()
+    }
+
+    class Account {
+        -Integer id
+        -String accountNumber
+        -String accountAgency
+        -Client client
+        -Double balance
+        -Double bound
+        -String accountType
+        -List<Transaction> transactions
+
+        +Integer getId()
+        +void deposit(Double: value)
+        +Void witdhdraw(Double: value)
+        +Void changeLimit(Double: newLimit)
+        +Void transfer(Account: destinatioAccount, Double: value)
+        +Void exportHistory()
+
+    }
+
+    class Transaction{
+        -Integer id
+        -Date date
+        -String transactionType
+        -Double value
+        -Account sourceAccount
+        -Account destinationAccount
+
+        +Integer getId()
+        +Date getDate()
+        +String getType()
+        +Double getValue()
+        +Account getSourceAccount()
+        +Account getDestinationAccount()
+    }
+
+    Client --> Account : Client as account in a bank
+@enduml
